@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Numbers and Math</title>
+  </head>
+  <body>
+    <script>
+      function formatCurrency(amount, currencyCode) {
+        let formattedAmount;
+        let symbol;
+        let isSymbolAfter = false;
+        if(currencyCode === 'USD') {
+          symbol = '$';
+        } else if(currencyCode === 'EUR') {
+          symbol = '€';
+        } else if(currencyCode === 'INR') {
+          symbol = '₹';
+        } else {
+          symbol = '';
+        }
+        
+        let fixedAmount = amount.toFixed(2); 
+        let parts = fixedAmount.split('.');
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        formattedAmount = parts.join('.');
+
+        if (currencyCode === 'EUR') {
+          isSymbolAfter = true;
+        }
+        if (isSymbolAfter) {
+          return formattedAmount + ' ' + symbol;
+        } else {
+          return symbol + ' ' + formattedAmount;
+        }
+      }
+
+      console.log(formatCurrency(123456.789, 'USD')); 
+      console.log(formatCurrency(123456.789, 'INR')); 
+      console.log(formatCurrency(123456.789, 'EUR')); 
+    </script>
+  </body>
+</html>

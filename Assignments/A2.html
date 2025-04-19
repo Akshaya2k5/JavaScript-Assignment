@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Strings</title>
+  </head>
+  <body>
+    <script>
+      function findLongestPalindrome(str) {
+        let longest = "";
+        for(let i = 0; i < str.length; i++) {
+          for(let j = i + 1; j <= str.length; j++) {
+            let subStr = str.substring(i, j);
+            let reversed = subStr.split('').reverse().join(''); 
+            if (subStr === reversed && subStr.length > longest.length) {
+              longest = subStr; 
+            }
+          }
+        }
+        return longest;
+      }
+
+      let result = findLongestPalindrome("racecar");
+      console.log(result); 
+    </script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Objects</title>
+  </head>
+  <body>
+    <script>
+      const book = {
+        title: 'ABC',
+        author: 'PQR',
+        ISBN: 123,
+        isBorrowed: false,
+        borrow: function() {
+          this.isBorrowed = true;
+        },
+        returnBook: function() {
+          this.isBorrowed = false;
+        }
+      };
+
+      const Library = {
+        books: [],
+        addBook: function(book) {
+          this.books.push(book);
+        },
+        findBookByISBN: function(isbn) {
+          return this.books.find((book) => {
+           return book.ISBN === isbn;
+          });
+        },
+        listAvailableBooks: function() {
+          return this.books.filter((book) => {
+            return !book.isBorrowed;
+          });
+        },
+        listBorrowedBooks: function() {
+          return this.books.filter((book) => {
+            return book.isBorrowed;
+          });
+        }
+      };
+
+      Library.addBook(book);
+      console.log("All books:", Library.books);
+
+      console.log("Available books:", Library.listAvailableBooks());
+
+      book.borrow();
+      console.log("Borrowed books after borrowing:", Library.listBorrowedBooks());
+
+      book.returnBook();
+      console.log("Available books after returning:", Library.listAvailableBooks());
+    </script>
+  </body>
+</html>

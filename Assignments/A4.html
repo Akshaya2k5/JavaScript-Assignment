@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Variables</title>
+  </head>
+  <body>
+    
+    <script>
+      let y=10; //global
+      function scope() {
+        let x=5; //local
+        if(true) {
+          let z=15;  //block
+          console.log(z);
+          console.log(y);
+          console.log(x);
+        }
+        console.log(x);
+        console.log(y);
+        //console.log(z); //Error
+      }
+      scope();
+      //console.log(x); //Error
+      console.log(y);
+    </script>
+  </body>
+</html>

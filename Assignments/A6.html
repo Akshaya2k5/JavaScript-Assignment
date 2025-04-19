@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Functions</title>
+  </head>
+  <body>
+    <script>
+      function createCalculator() {
+        return {
+          add: (a,b) => a+b,
+          subtract: (a,b) => a-b,
+          multiply: (a,b) => a*b,
+          divide: (a,b) => a/b
+        };
+      }
+
+      const calci = createCalculator();
+      console.log(calci.add(4,2));
+      console.log(calci.subtract(4,2));
+      console.log(calci.multiply(4,2));
+      console.log(calci.divide(4,2));
+    </script>
+  </body>
+</html>

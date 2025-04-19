@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Boolean and If-Statements</title>
+  </head>
+  <body>
+    <script>
+      const obj = {
+        age : 20,
+        hasLicense : true,
+        hasVoterId : false,
+        role : 'admin',
+        marks : 95,
+        rank : 5,
+        temperature : 40,
+        humidity : 80,
+        isActive : true
+      };
+
+      function evaluateConditions(obj) {
+        //if(obj.age > 18 && obj.hasLicense) {
+        //  return "Eligible to drive";
+        //} 
+        if(obj.temperature > 30 || obj.humidity > 70) {
+          return "Warning: High discomfort level";
+        } 
+        if((obj.role === "admin" || obj.role === "editor") && obj.isActive) {
+          return "Access granted";
+        } 
+        if(obj.marks > 90 && obj.rank < 10) {
+          return "Top Performer";
+        }
+        if(obj.age > 18 && obj.hasVoterId) {
+          return "Eligible to vote";
+        }
+      }
+
+      console.log(evaluateConditions(obj));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOM</title>
+  </head>
+  <body>
+    <div id="container">
+      <h1>My List</h1>
+      <ul id="myList">
+        <li class="item">Item 1</li>
+        <li class="item">Item 2</li>
+        <li class="item">Item 3</li>
+      </ul>
+      <button id="addButton">Add Item</button>
+    </div>
+    
+    <script>
+      const list = document.getElementById("myList");
+      const button = document.getElementById("addButton");
+      const allItems = document.querySelectorAll('.item');
+      allItems.forEach(function(item) {
+        item.addEventListener('click', function() {
+          item.remove();
+        });
+      });
+      button.addEventListener('click', function() {
+        const newItem = document.createElement('li');
+        newItem.textContent = 'New Item';
+        newItem.classList.add('item');
+        newItem.addEventListener('click', function() {
+          newItem.remove();
+        });
+
+        list.appendChild(newItem);
+      });
+    </script>
+  </body>
+</html>
