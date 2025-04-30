@@ -1,0 +1,72 @@
+Problem 1:Closure Condrums: A Guided Learning Journey
+
+Explanation:
+The Output will be: 1 2 1
+Because counterA and counterB maintain independent counts.
+When createCounter() is called, it creates a new execution context.
+Inside that context, a local variable count is initialized to 0.
+Then, the inner function incrementCounter() is returned.
+Each time createCounter() is called, a new closure is formed with its own private state (count). This is why counterA and counterB don't interfere with each other — they each have their own "memory" of count.
+
+-----------------------------------------------------------
+
+Problem 2: The Delayed Greeter
+
+Explanation:
+The Output will be: Hello, undefined!
+                    Hello, undefined!
+                    Hello, undefined!
+Because in the original implementation, all setTimeout callbacks share the same variable i, declared using var. After the loop ends, i equals names.length, so each callback tries to access names[3], which is undefined.
+
+But, using let the output will be as expected:
+Hello, Alice!   - after 0 seconds  
+Hello, Bob!     - after 1 second  
+Hello, Charlie! - after 2 seconds 
+Because let has block scope, so in every loop iteration, a new binding of i is created.
+The setTimeout callback captures that specific i, making the output correct as expected.
+
+-----------------------------------------------------------
+
+Section 2 Assignments:
+
+Part 1: Variable Scope and Hoisting - The Case of the Missing Declaration
+
+2. Hoisting and key differences in how var, let, and const are hoisted:
+
+Explanation:
+Hoisting: Hoisting is a JavaScript mechanism where variable and function declarations are moved to the top of their containing scope during the compilation phase, before code execution. This means you can reference functions and variables before they are formally declared in the code.
+
+var: var are hoisted and automatically initialized with undefined, allowing them to be accessed before their declaration line.
+
+let and const: let and const are hoisted but not initialized; they remain in a Temporal Dead Zone (TDZ) from the start of the block until their declaration is encountered. They provide ReferenceError when we try to access them.
+
+-----------------------------------------------------------
+
+Part 2: The Perils of this - Object Methods and Arrow Functions
+
+1.Explanation: Inside setTimeout(function() { ... }), this refers to the global object (window), it does not automatically refer to the user object. Hence, this.name is undefined.
+
+2.Explanation: In traditional functions, the value of this depends on how the function is called, not where it is defined. When using setTimeout, the callback function is executed in the context of the global object (or undefined in strict mode), not the object that originally defined the method.
+
+To solve this, developers often assign the value of this to another variable like self or that before entering the callback. This technique captures the correct context (i.e., the object) in a variable that can then be referenced inside the nested function.
+
+3.Arrow functions in JavaScript do not have their own this context. Instead, they use lexical this binding, meaning they inherit the this value from the enclosing scope in which the arrow function was defined.
+
+This behavior makes arrow functions especially useful for callbacks like setTimeout, because they automatically preserve the context of the outer function or object — no need to use a self or that workaround.
+
+-----------------------------------------------------------
+
+Part 3: The Power of Closures - Maintaining State
+
+1.Explanation: A closure in JavaScript is a function that "remembers" the variables from the scope in which it was defined, even after that outer function has finished executing. When you define inner functions like increment and decrement inside another function (setupCounter), those inner functions form closures over the local variables (like count). This means they retain access to count even after setupCounter is done running.
+
+-----------------------------------------------------------
+
+Part 4: Advanced Functions - Arguments and Flexibility
+
+1.Explanation: In JavaScript, function parameters are flexible. If a function is called with fewer arguments than it declares, the missing parameters are automatically assigned the value undefined. If a function is called with more arguments than declared, the extra arguments are simply ignored unless explicitly accessed using special tools like the arguments object (in older code) or the rest parameter (in modern code).
+
+2.Explanation: The rest parameter (...) is a modern ES6 feature that allows you to collect multiple remaining arguments passed to a function into a single array.
+->Only one rest parameter is allowed per function.
+->It must always be the last parameter.
+->It provides a cleaner, more readable alternative to the old arguments object.
