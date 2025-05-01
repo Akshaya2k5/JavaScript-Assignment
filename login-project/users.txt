@@ -1,0 +1,6 @@
+alice:password123
+bob:hello456
+charlie:qwerty789
+admin@example.com:password123
+user@example.com:pass123
+user@example.com:12345
